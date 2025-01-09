@@ -2,8 +2,8 @@
 
 在 [`script`](/script) 目录下存在两个脚本：
 
-- `init_cat1.py` -- 日志记录脚本，需要注册成服务在后台运行并设置开机启动；
-- `cat1logs.py` -- 对日志中的短信内容进行解码（UnicodeBE）。
+- [`init_cat1.py`](/script/init_cat1.py) -- 日志记录脚本，需要注册成服务在后台运行并设置开机启动；
+- [`cat1logs.py`](/script/cat1logs.py) -- 对日志中的短信内容进行解码（UnicodeBE）。
 
 ## `init_cat1.py` 的使用
 
