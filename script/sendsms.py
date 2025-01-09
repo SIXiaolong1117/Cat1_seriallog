@@ -71,10 +71,10 @@ def get_second_last_log_line():
 def parse_sms_response():
     log_line = get_latest_log_line()
     if "ERROR" in log_line:
-        return False, "短信发送失败，返回错误"
+        return False, "SMS sending failed."
     elif "OK" in log_line:
-        return True, "短信发送成功"
-    return False, "未知响应"
+        return True, "SMS sent successfully."
+    return False, "Unknown response"
 
 # 发送短信
 def send_sms_process(ser, phone_number, message):
@@ -92,7 +92,8 @@ def send_sms_process(ser, phone_number, message):
     attached = False
     for _ in range(40):
         ser.write(("AT+CGATT?" + '\r\n').encode())
-        print(f"Send: {'AT+CGATT?'.strip()}")
+        print(f"Send: AT+CGATT?")
+        time.sleep(2)
         log_line = get_second_last_log_line()   
         print(f"{log_line.strip()}")
         if "1" in log_line:  # 检查基站是否附着
@@ -118,9 +119,9 @@ def send_sms_process(ser, phone_number, message):
         print("Unable to set SMS mode to Chinese.")
         return
 
-    # 步骤 7: 发送短信的三个步骤
-    # 发送 AT+CMGS="<phone_number>"\r
-    send_command = f"AT+CMGS='{phone_number}'\r"
+    # 步骤 7: 发送短信
+    # 发送 AT+CMGS="<phone_number>"
+    send_command = f'AT+CMGS="{phone_number}"'    # 这里的引号不能瞎写，AT 指令要求双引号
     if ">" not in send_at(ser, send_command):
         return False
 
