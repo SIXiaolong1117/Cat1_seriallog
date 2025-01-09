@@ -1,9 +1,12 @@
-# Cat1 模块串口日志记录与短信内容解码
+# Cat1 模块日志记录与基本操作
 
 在 [`script`](/script) 目录下存在两个脚本：
 
 - [`init_cat1.py`](/script/init_cat1.py) -- 日志记录脚本，需要注册成服务在后台运行并设置开机启动；
-- [`cat1logs.py`](/script/cat1logs.py) -- 对日志中的短信内容进行解码（UnicodeBE）。
+- [`cat1logs.py`](/script/cat1logs.py) -- 对日志中的短信内容进行解码（UnicodeBE）；
+- [`sendat.py`](/script/sendat.py) -- 发送 AT 命令，用法：`python sendat.py <AT>`；
+- [`sendsms.py`](/script/sendat.py) -- 发送短信，用法：`python sendsms.py <Phone Number> <SMS>`；
+- [`sendbyhex.py`](/script/sendat.py) -- 以 16 进制发送文本内容，会自动在末尾加上 16 进制的 `Ctrl + Z`（即：`0x1A`），用法：`python sendbyhex.py <Content>`；
 
 ## `init_cat1.py` 的使用
 

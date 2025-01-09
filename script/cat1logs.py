@@ -12,6 +12,9 @@ import re
                                     ----------------------------------------  <- 我们要解码的内容
 '''
 
+# 日志文件路径
+LOG_FILE_PATH = '/var/log/cat1_module.log'
+
 def parse_unicode_be(log_path):
     try:
         with open(log_path, 'r', encoding='utf-8') as log_file:
@@ -41,7 +44,4 @@ def parse_unicode_be(log_path):
     except Exception as e:
         print(f"ERROR: {e}")
 
-# 日志文件路径
-log_file_path = '/var/log/cat1_module.log'
-
-parse_unicode_be(log_file_path)
+parse_unicode_be(LOG_FILE_PATH)
