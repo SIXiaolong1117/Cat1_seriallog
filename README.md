@@ -11,6 +11,7 @@
 在 [`script`](/script) 目录下存在两个脚本：
 
 - [`cat1logs.py`](/script/cat1logs.py) -- 对日志中的短信内容进行解码（UnicodeBE）；
+- [`cat1logsmod.py`](/script/cat1logs.py) -- `cat1logs.py` 的升级版，以更加直观的方式输出短信内容；
 - [`init_cat1.py`](/script/init_cat1.py) -- 日志记录脚本，需要注册成服务在后台运行并设置开机启动；
 - [`rst.py`](/script/rst.py) -- 重启 Cat1 模块，需要接线。
 - [`sendat.py`](/script/sendat.py) -- 发送 AT 命令，用法：`python sendat.py <AT>`；
@@ -58,4 +59,25 @@ sudo systemctl status cat1_module.service
 
 ```bash
 tail -f /var/log/cat1_module.log
+```
+
+## `cat1logsmod.py` 的使用
+
+需要一个辅助脚本 [`monitor_cat1log.sh`](/script/monitor_cat1log.sh)，该脚本借助 `inotifywait` 监控日志文件的变动，如果文件变动则执行 `cat1logsmod.py`。
+
+配合对应的 `systemd` 服务 `/etc/systemd/system/monitor_log.service`
+
+```service
+[Unit]
+Description=Monitor /var/log/cat1_module.log and execute script on change
+After=network.target
+
+[Service]
+ExecStart=/path/to/monitor_cat1log.sh
+Restart=always
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
 ```

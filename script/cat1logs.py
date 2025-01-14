@@ -38,7 +38,7 @@ def parse_unicode_be(log_path):
 
                         # 按照 UnicodeBE 解码 16 进制数据
                         decoded_text = bytes.fromhex(hex_data_cleaned).decode('utf-16-be')
-                        line = line.replace(hex_data, f'{hex_data} ({decoded_text})')
+                        line = line.replace(hex_data, f'{decoded_text}\r\n{hex_data}')
                     except UnicodeDecodeError:
                         # 如果解码失败
                         line = line.strip() + " (Decoding failed)\n"
