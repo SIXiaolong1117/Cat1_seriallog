@@ -8,6 +8,10 @@
 
 # Cat1 模块日志记录与基本操作
 
+![](/README/01.png)
+
+> 服务器后台查看短信内容
+
 在 [`script`](/script) 目录下存在两个脚本：
 
 - [`cat1logs.py`](/script/cat1logs.py) -- 对日志中的短信内容进行解码（UnicodeBE）；
